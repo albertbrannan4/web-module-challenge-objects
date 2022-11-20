@@ -86,7 +86,7 @@ Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
 
-console.log(reviews[5].name);
+// console.log(reviews[5].name);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4 (not auto-tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
@@ -130,7 +130,7 @@ Use the getReviewByIndex function below to do the following:
 function getReviewByIndex(array,desiredIndex) {
   return`${array[desiredIndex].name} gave the restaurant a ${array[desiredIndex].rating} star review, and their feedback was: ${array[desiredIndex].feedback}`
 }
-// console.log(getReviewByIndex(reviews,0))
+console.log(getReviewByIndex(reviews,0))
   
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -150,7 +150,7 @@ function getLastReview(array) {
   const location = array.length - 1
   return `${array[location].name} gave the restaurant a ${array[location].rating} star review, and their feedback was: ${array[location].feedback}`
 } 
-//console.log(getLastReview(reviews));
+console.log(getLastReview(reviews));
 
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
@@ -169,11 +169,21 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+ function getReviewByRating(reviewsArray,searchRating) {
+    const newArray = []
+    const adjustedSearch= Math.floor(searchRating);
+    for(let i=0;i<reviewsArray.length;i++){
+      let rating = Math.floor(reviewsArray[i].rating);
+      if(rating ===adjustedSearch){
+       newArray.push(reviewsArray[i])
+      }
+    }
+    return newArray
   }
 
-  
+  console.log(getReviewByRating(reviews, 3));
+
+
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
 Use the getLongReviews function below to do the following:
   1. Receive the array that holds all the reviews
@@ -187,10 +197,17 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
-  }
-  
+function getLongReviews(array) {
+  const newArray=[];
+    for(let i=0;i<array.length; i++){
+      let words = array[i].feedback.split(' ')
+      if(words.length>15){
+        newArray.push(array[i]);
+      }
+    }
+  return newArray
+}
+console.log(getLongReviews(reviews))
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
 This stretch goal does not use the reviews data!  You create your own object in this stretch goal.
@@ -210,11 +227,18 @@ Use the carMaker function below to do the following:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
+function carMaker(odometer) {
+    return {
+      odometer,
+      drive: function(distance){
+        return this.odometer += distance;
+      }
+    }
     
 }
-
+const car1 = carMaker(100)
+console.log(car1.drive(10));
+console.log(car1.drive(10));
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
